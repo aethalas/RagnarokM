@@ -1,15 +1,18 @@
 <template>
   <div id="app">
+    <Header/>
     <ragnarok-m/>
   </div>
 </template>
 
 <script>
+import Header from './components/Header.vue'
 import RagnarokM from './components/RagnarokM.vue'
 
 export default {
   name: 'app',
   components: {
+    Header,
     RagnarokM
   }
 }

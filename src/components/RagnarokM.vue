@@ -1,8 +1,6 @@
 <template>
  <div>
-   <div v-for="(entry, index) in monsters" :key="index">
-     {{entry.name}}
-   </div>
+  <b-table striped hover :items="monsters"></b-table>
  </div>
 </template>
 
