@@ -42,4 +42,18 @@ export default {
     max-width: 1400px;
     margin: 0 auto;
   }
+
+   @media (min-width: 1000px) and (max-width: 1400px) {
+    .max-width {
+      max-width: 85vw;
+      margin: 0 auto;
+    }
+   }
+
+    @media (min-width: 1px) and (max-width: 999px) {
+    .max-width {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+   }
 </style>

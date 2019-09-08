@@ -1,6 +1,14 @@
 <template>
  <div>
-  <b-table striped hover head-variant="dark" table-variant="light" primary-key="id" :items="monsters"></b-table>
+  <b-table striped hover head-variant="dark" table-variant="light" primary-key="id" :items="monsters" :fields="fields">
+    <template v-slot:cell(icon)="data">
+      <img :src="data.value">
+    </template>
+    <template v-slot:cell(name)="data">
+      <b>{{data.value}}</b><br>
+      <b>{{data.level}}</b>
+    </template>
+  </b-table>
  </div>
 </template>
 
@@ -10,6 +18,7 @@
   export default {
     data() {
       return {
+        fields: ['icon', 'name', 'level', 'hp'],
         monsters: [],
         errors: []
       }
@@ -28,5 +37,7 @@
 </script>
 
 <style>
-
+ img {
+   width: 64px;
+ }
 </style>
