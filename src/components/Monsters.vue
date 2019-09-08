@@ -1,6 +1,6 @@
 <template>
  <div>
-  <b-table striped hover :items="monsters"></b-table>
+  <b-table striped hover head-variant="dark" table-variant="light" primary-key="id" :items="monsters"></b-table>
  </div>
 </template>
 

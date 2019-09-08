@@ -1,30 +1,45 @@
 <template>
-  <div id="app">
+  <div id="app" class="max-width">
     <Header/>
-    <ragnarok-m/>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
-import RagnarokM from './components/RagnarokM.vue'
 
 export default {
   name: 'app',
   components: {
-    Header,
-    RagnarokM
+    Header
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+  @import url("https://fonts.googleapis.com/css?family=Rubik");
+
+  #app {
+    font-family: 'Rubik', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #ffffff;
+    background-image: url("./assets/background.png");
+    margin: 0;
+  }
+
+  .max-width {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 </style>
