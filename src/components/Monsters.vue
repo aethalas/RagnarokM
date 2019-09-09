@@ -1,12 +1,5 @@
 <template>
   <div>
-  <b-modal id="modal-no-backdrop" hide-backdrop content-class="shadow" title="BootstrapVue">
-    <p class="my-2">
-      We've added the utility class <code>'shadow'</code>
-      to the modal content for added effect.
-    </p>
-  </b-modal>
-
     <b-container fluid>
       <b-row>
         <b-col lg="5" class="my-1">
@@ -89,9 +82,13 @@
         <img :src="data.value">
       </template>
       <template v-slot:cell(name)="data">
-        <b-button v-b-modal.modal-no-backdrop>{{data.value}}</b-button>
+        <b-button size="md" @click="info(data.item, data.index, $event.target)" class="mr-1">
+          {{data.value}}
+        </b-button>
       </template>
     </b-table>
+
+
 
     <b-pagination
       v-model="currentPage"
@@ -106,8 +103,13 @@
 
 <script>
   import axios from 'axios';
+  import MonsterModal from './MonsterModal.vue'
 
   export default {
+    components: {
+      MonsterModal
+    },
+
     data() {
       return {
         perPage: 10,
@@ -149,6 +151,23 @@
       rows ()
       {
         return this.monsters.length
+      }
+    },
+
+    methods: {
+      info(item, index, button) {
+        this.infoModal.title = `Row index: ${index}`
+        this.infoModal.content = JSON.stringify(item, null, 2)
+        this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+      },
+      resetInfoModal() {
+        this.infoModal.title = ''
+        this.infoModal.content = ''
+      },
+      onFiltered(filteredItems) {
+        // Trigger pagination to update the number of buttons/pages due to filtering
+        this.totalRows = filteredItems.length
+        this.currentPage = 1
       }
     }
   }
