@@ -6,8 +6,8 @@
         <b-tab title="Home"></b-tab>
         <b-tab title="Monsters"><Monsters/></b-tab>
         <b-tab title="Items" active><Items/></b-tab>
-        <b-tab title="Cards"><Items/></b-tab>
-        <b-tab title="Equipment"><Items/></b-tab>
+        <b-tab title="Cards"><Cards/></b-tab>
+        <b-tab title="Equipment"><Equipment/></b-tab>
       </b-tabs>
     </b-card>
   </div>
@@ -16,11 +16,15 @@
 <script>
   import Monsters from './Monsters.vue'
   import Items from './Items.vue'
+  import Cards from './Cards.vue'
+  import Equipment from './Equipment.vue'
 
   export default {
     components: {
       Monsters,
-      Items
+      Items,
+      Cards,
+      Equipment
     }
   }
 </script>

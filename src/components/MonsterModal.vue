@@ -272,11 +272,11 @@
                 </b-col>
 
                 <b-col>
-                  x{{loot.amount}}
+                  x {{loot.amount}}
                 </b-col>
 
                 <b-col>
-                  {{loot.dropChance}}%
+                  <p v-if="loot.dropChance"><b-badge variant="success">{{loot.dropChance}}%</b-badge></p>
                 </b-col>
               </b-row>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+      <div>
     <b-container fluid>
       <b-row>
         <b-col lg="5" class="my-1">
@@ -110,7 +110,7 @@
     },
 
     created() {
-      axios.get('http://jonnyhtyson.com/ragnarokm/api/items.php?get=all')
+      axios.get('http://jonnyhtyson.com/ragnarokm/api/items.php?get=cards')
       .then(response => {
         this.items = response.data
       })
@@ -129,33 +129,5 @@
 </script>
 
 <style>
- .icon-image {
-   max-height: 64px;
-   max-width: 64px;
- }
 
- .table > tbody > tr > td {
-    vertical-align: middle;
-    font-family: 'Ubuntu', sans-serif;
-    text-shadow: 2px 2px 4px #d5d5d5;
-  }
-
-  @media (min-width: 1000px) and (max-width: 1400px) {
-
-  }
-
-  @media (min-width: 1px) and (max-width: 999px) {
-    img {
-      width: 40px;
-    }
-
-    .table > tbody > tr > td {
-      vertical-align: middle;
-      font-family: 'Ubuntu', sans-serif;
-      text-shadow: 2px 2px 4px #d5d5d5;
-      font-size: 11px;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-  }
 </style>
