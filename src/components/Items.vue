@@ -14,7 +14,7 @@
           </b-col>
           <b-col>
             <b-form-group
-              label="Race"
+              label="Type"
               label-cols-sm="6"
               label-cols-md="4"
               label-cols-lg="5"
@@ -27,70 +27,35 @@
                 v-model="filter"
                 id="raceSelection"
                 size="sm"
-                :options="race"
+                :options="type"
               ></b-form-select>
             </b-form-group>
           </b-col>
       </b-row>
-
-      <b-row>
-        <b-col lg="5" class="my-1">
-          <b-form-group
-              label="Element"
-              label-cols-sm="6"
-              label-cols-md="4"
-              label-cols-lg="2"
-              label-align-sm="right"
-              label-size="sm"
-              label-for="elementSelection"
-              class="mb-1"
-          >
-          <b-form-select
-                v-model="filter"
-                id="elementSelection"
-                size="sm"
-                :options="element"
-          ></b-form-select>
-          </b-form-group>
-        </b-col>
-
-        <b-col>
-          <b-form-group
-              label="Rank"
-              label-cols-sm="6"
-              label-cols-md="4"
-              label-cols-lg="5"
-              label-align-sm="right"
-              label-size="sm"
-              label-for="sizeSelection"
-              class="mb-1"
-          >
-          <b-form-select
-                v-model="filter"
-                id="sizeSelection"
-                size="sm"
-                :options="rank"
-          ></b-form-select>
-          </b-form-group>
-        </b-col>
-      </b-row>
     </b-container>
 
 
-    <b-table id="my-table" :filter="filter" :per-page="perPage" :current-page="currentPage" striped hover head-variant="dark" table-variant="light" primary-key="id" :items="monsters" :fields="fields">
+    <b-table id="my-table" :filter="filter" :per-page="perPage" :current-page="currentPage" striped hover head-variant="dark" table-variant="light" primary-key="id" :items="items" :fields="fields">
       <template v-slot:cell(icon)="data">
         <img :src="data.value">
       </template>
-      <template v-slot:cell(name)="data">
-        <MonsterModal :data="data"/>
+      <template v-slot:cell(tradeable)="data">
+        <p v-if="data.value == 'Yes'"><b-badge variant="success">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'No'"><b-badge variant="danger">{{data.value}}</b-badge></p>
       </template>
-      <template v-slot:cell(size)="data">
-        {{data.value}}
+      <template v-slot:cell(storageable)="data">
+        <p v-if="data.value == 'Yes'"><b-badge variant="success">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'No'"><b-badge variant="danger">{{data.value}}</b-badge></p>
       </template>
-      <template v-slot:cell(rank)="data">
-        <p v-if="data.value == 'Normal'"><b-badge>{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'Mini Boss'"><b-badge variant="info">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'MVP'"><b-badge variant="danger">{{data.value}}</b-badge></p>
+      <template v-slot:cell(type)="data">
+        <p v-if="data.value == 'common'"><b-badge variant="primary">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'potion'"><b-badge variant="secondary">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'refine'"><b-badge variant="success">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'scroll'"><b-badge variant="danger">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'blueprint'"><b-badge variant="warning">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'material'"><b-badge variant="info">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'equipment'"><b-badge variant="light">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'card'"><b-badge variant="dark">{{data.value}}</b-badge></p>
       </template>
     </b-table>
 
@@ -109,11 +74,10 @@
 
 <script>
   import axios from 'axios';
-  import MonsterModal from './MonsterModal.vue'
 
   export default {
     components: {
-      MonsterModal
+
     },
 
     data() {
@@ -122,18 +86,16 @@
         currentPage: 1,
         filter: null,
         filterOn: [],
-        race: ['Angel', 'Brute', 'Demi-Human', 'Demon', 'Dragon', 'Fish', 'Formless', 'Insect', 'Plant', 'Undead'],
-        element: ['Earth', 'Fire', 'Formless', 'Ghost', 'Holy', 'Neutral', 'Poison', 'Shadow', 'Undead', 'Water', 'Wind'],
-        rank: ['Normal', 'Mini Boss', 'MVP'],
+        type: ['Common', 'Potion', 'Refine', 'Scroll', 'Blueprint', 'Material', 'Equipment', 'Card'],
         fields: [
           { key: 'icon', sortabe: false },
           { key: 'name', sortable: true },
-          { key: 'level', sortable: true },
-          { key: 'race', sortable: true },
-          { key: 'element', sortable: true },
-          { key: 'rank', sortable: true }
+          { key: 'Sellable', sortable: true },
+          { key: 'tradeable', sortable: true },
+          { key: 'storageable', sortable: true },
+          { key: 'type', sortable: true }
         ],
-        monsters: [],
+        items: [],
         errors: [],
         infoModal: {
           id: 'info-modal',
@@ -144,9 +106,9 @@
     },
 
     created() {
-      axios.get('http://jonnyhtyson.com/ragnarokm/api/monster.php?get=all')
+      axios.get('http://jonnyhtyson.com/ragnarokm/api/items.php?get=all')
       .then(response => {
-        this.monsters = response.data
+        this.items = response.data
       })
       .catch(e => {
         this.errors.push(e)
@@ -156,7 +118,7 @@
     computed: {
       rows ()
       {
-        return this.monsters.length
+        return this.items.length
       }
     }
   }

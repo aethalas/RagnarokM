@@ -27,6 +27,7 @@ export default {
     color: #2c3e50;
     margin-top: 60px;
     margin-bottom: 60px;
+    font-size: 20px;
   }
 
   * {
@@ -48,13 +49,21 @@ export default {
     .max-width {
       max-width: 85vw;
       margin: 0 auto;
+      font-size: 1.4vw;
     }
    }
 
     @media (min-width: 1px) and (max-width: 999px) {
+    #app {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-size: 9px;
+    }
+
     .max-width {
-      max-width: 500px;
+      max-width: 100%;
       margin: 0 auto;
+      font-size: 13px;
     }
    }
 </style>
