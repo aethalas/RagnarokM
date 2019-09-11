@@ -12,25 +12,6 @@
               </b-input-group>
             </b-form-group>
           </b-col>
-          <b-col>
-            <b-form-group
-              label="Type"
-              label-cols-sm="6"
-              label-cols-md="4"
-              label-cols-lg="5"
-              label-align-sm="right"
-              label-size="sm"
-              label-for="raceSelection"
-              class="mb-1"
-            >
-              <b-form-select
-                v-model="filter"
-                id="raceSelection"
-                size="sm"
-                :options="type"
-              ></b-form-select>
-            </b-form-group>
-          </b-col>
       </b-row>
     </b-container>
 
@@ -39,27 +20,13 @@
       <template v-slot:cell(icon)="data">
         <img :src="data.value" class="icon-image">
       </template>
-      <template v-slot:cell(sellable)="data">
-        <p v-if="data.value == 'Yes'"><b-badge variant="success">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'No'"><b-badge variant="danger">{{data.value}}</b-badge></p>
+      <template v-slot:cell(name)="data">
+        <CardsModal :data="data"/>
       </template>
-      <template v-slot:cell(tradeable)="data">
-        <p v-if="data.value == 'Yes'"><b-badge variant="success">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'No'"><b-badge variant="danger">{{data.value}}</b-badge></p>
-      </template>
-      <template v-slot:cell(storageable)="data">
-        <p v-if="data.value == 'Yes'"><b-badge variant="success">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'No'"><b-badge variant="danger">{{data.value}}</b-badge></p>
-      </template>
-      <template v-slot:cell(type)="data">
-        <p v-if="data.value == 'common'"><b-badge variant="primary">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'potion'"><b-badge variant="secondary">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'refine'"><b-badge variant="success">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'scroll'"><b-badge variant="danger">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'blueprint'"><b-badge variant="warning">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'material'"><b-badge variant="info">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'equipment'"><b-badge variant="light">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'card'"><b-badge variant="dark">{{data.value}}</b-badge></p>
+      <template v-slot:cell(mvp)="data">
+        <p v-if="data.value == 'Normal'"><b-badge>{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'Mini Boss'"><b-badge variant="info">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'MVP'"><b-badge variant="danger">{{data.value}}</b-badge></p>
       </template>
     </b-table>
 
@@ -78,10 +45,11 @@
 
 <script>
   import axios from 'axios';
+  import CardsModal from './CardsModal.vue'
 
   export default {
     components: {
-
+      CardsModal
     },
 
     data() {
@@ -90,14 +58,11 @@
         currentPage: 1,
         filter: null,
         filterOn: [],
-        type: ['Common', 'Potion', 'Refine', 'Scroll', 'Blueprint', 'Material', 'Equipment', 'Card'],
         fields: [
           { key: 'icon', sortabe: false },
           { key: 'name', sortable: true },
-          { key: 'sellable', sortable: true },
-          { key: 'tradeable', sortable: true },
-          { key: 'storageable', sortable: true },
-          { key: 'type', sortable: true }
+          { key: 'slot', sortable: true },
+          { key: 'mvp', sortable: true }
         ],
         items: [],
         errors: [],

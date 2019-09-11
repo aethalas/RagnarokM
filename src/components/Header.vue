@@ -4,6 +4,7 @@
     <b-card no-body>
       <b-tabs  pills card fill>
         <b-tab title="Home"></b-tab>
+        <b-tab title="Jobs"></b-tab>
         <b-tab title="Monsters"><Monsters/></b-tab>
         <b-tab title="Items" active><Items/></b-tab>
         <b-tab title="Cards"><Cards/></b-tab>

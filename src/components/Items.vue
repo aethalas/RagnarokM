@@ -39,6 +39,10 @@
       <template v-slot:cell(icon)="data">
         <img :src="data.value" class="icon-image">
       </template>
+      <template v-slot:cell(name)="data">
+        <p v-if="data.item.type != 'card'"><ItemsModal :data="data"/></p>
+        <p v-else><CardsModal :data="data"/></p>
+      </template>
       <template v-slot:cell(sellable)="data">
         <p v-if="data.value == 'Yes'"><b-badge variant="success">{{data.value}}</b-badge></p>
         <p v-if="data.value == 'No'"><b-badge variant="danger">{{data.value}}</b-badge></p>
@@ -78,10 +82,13 @@
 
 <script>
   import axios from 'axios';
+  import CardsModal from './CardsModal.vue'
+  import ItemsModal from './ItemsModal.vue'
 
   export default {
     components: {
-
+      CardsModal,
+      ItemsModal
     },
 
     data() {
@@ -100,6 +107,7 @@
           { key: 'type', sortable: true }
         ],
         items: [],
+        cards: [],
         errors: [],
         infoModal: {
           id: 'info-modal',

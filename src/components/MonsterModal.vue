@@ -4,7 +4,7 @@
       <template v-slot:modal-title>
         <b-container class="monster-header">
           <b-row>
-            <b-col cols="3" xs="auto" sm="auto" md="auto" lg="auto"><img :src="monsModal.icon" style="height: 100px; width: 100px;"></b-col>
+            <b-col cols="3" xs="auto" sm="auto" md="auto" lg="auto"><img :src="monsModal.icon" class="monster-icon-top"></b-col>
             <b-col cols="9" xs="auto" sm="auto" md="auto" lg="auto">
               <b>{{data.value}}</b><br>
               {{monsModal.race}} / {{monsModal.element}} / {{monsModal.size}}<br>
@@ -20,11 +20,6 @@
         <b-row>
           <b-col class="monster-information">
             <b-container>
-              <b-row>
-                <b-col>
-                  <b>Monster Information</b>
-                </b-col>
-              </b-row>
 
               <b-row>
                 <b-col>
@@ -83,13 +78,8 @@
             </b-container>
           </b-col>
 
-          <b-col class="monster-statistics">
+          <b-col class="monster-information">
             <b-container>
-              <b-row>
-                <b-col>
-                  <b>Monster Statistics</b>
-                </b-col>
-              </b-row>
 
               <b-row>
                 <b-col>
@@ -151,133 +141,172 @@
         </b-row>
       </b-container>
 
-      <div class="monster-description">{{monsModal.description}}</div>
+      <div v-if="monsModal.description" class="monster-description">{{monsModal.description}}</div>
 
-            <b-container>
+      <b-container>
         <b-row>
-          <b-col class="monster-information">
+          <b-col class="monster-statistics">
             <b-container>
-              <b-row>
-                <b-col>
-                  <b>Monster Attributes</b>
-                </b-col>
-              </b-row>
 
               <b-row>
-                <b-col>
-                  <b>HP</b>
-                </b-col>
-                <b-col>
-                  {{monsModal.hp}}
-                </b-col>
-              </b-row>
+                <b-container>
 
+                  <b-row>
+                    <b-col>
+                     
+                      <b-container>
+                        <b-row>
+                          <b-col>
+                            <b>HP</b>
+                          </b-col>
+                          <b-col>
+                            {{monsModal.hp}}
+                          </b-col>
+                        </b-row>
+                      </b-container>
 
-              <b-row>
-                <b-col>
-                  <b>Hit</b>
-                </b-col>
-                <b-col>
-                  {{monsModal.hit}}
-                </b-col>
-              </b-row>
+                    </b-col>
+                    <b-col>
+                      
+                     <b-container>
+                        <b-row>
+                          <b-col>
+                            <b>Hit</b>
+                          </b-col>
+                          <b-col>
+                            {{monsModal.hit}}
+                          </b-col>
+                        </b-row>
+                      </b-container>
 
-              
-              <b-row>
-                <b-col>
-                  <b>Atk</b>
-                </b-col>
-                <b-col>
-                  {{monsModal.atk}}
-                </b-col>
-              </b-row>
+                    </b-col>
+                  </b-row>
 
-              <b-row>
-                <b-col>
-                  <b>M.Atk</b>
-                </b-col>
-                <b-col>
-                  {{monsModal.matk}}
-                </b-col>
-              </b-row>
+                  <b-row>
+                    <b-col>
+                     
+                      <b-container>
+                        <b-row>
+                          <b-col>
+                            <b>Atk</b>
+                          </b-col>
+                          <b-col>
+                            {{monsModal.atk}}
+                          </b-col>
+                        </b-row>
+                      </b-container>
 
-              
-              <b-row>
-                <b-col>
-                  <b>Def</b>
-                </b-col>
-                <b-col>
-                  {{monsModal.def}}
-                </b-col>
-              </b-row>
+                    </b-col>
+                    <b-col>
+                      
+                     <b-container>
+                        <b-row>
+                          <b-col>
+                            <b>M.Atk</b>
+                          </b-col>
+                          <b-col>
+                            {{monsModal.matk}}
+                          </b-col>
+                        </b-row>
+                      </b-container>
 
-              <b-row>
-                <b-col>
-                  <b>M.Def</b>
-                </b-col>
-                <b-col>
-                  {{monsModal.mdef}}
-                </b-col>
-              </b-row>
+                    </b-col>
+                  </b-row>
 
-              
-              <b-row>
-                <b-col>
-                  <b>Flee</b>
-                </b-col>
-                <b-col>
-                  {{monsModal.flee}}
-                </b-col>
-              </b-row>
+                  <b-row>
+                    <b-col>
+                     
+                      <b-container>
+                        <b-row>
+                          <b-col>
+                            <b>Def</b>
+                          </b-col>
+                          <b-col>
+                            {{monsModal.def}}
+                          </b-col>
+                        </b-row>
+                      </b-container>
 
-              
-              <b-row>
-                <b-col>
-                  <b>Move Spd</b>
-                </b-col>
-                <b-col>
-                  {{monsModal.movespeed}}
-                </b-col>
-              </b-row>
+                    </b-col>
+                    <b-col>
+                      
+                     <b-container>
+                        <b-row>
+                          <b-col>
+                            <b>M.Def</b>
+                          </b-col>
+                          <b-col>
+                            {{monsModal.mdef}}
+                          </b-col>
+                        </b-row>
+                      </b-container>
 
-              <b-row>
-                <b-col>
-                  <b>Attack Spd</b>
-                </b-col>
-                <b-col>
-                  {{monsModal.aspd}}
-                </b-col>
-              </b-row>
+                    </b-col>
+                  </b-row>
 
-              
+                  <b-row>
+                    <b-col>
+                     
+                      <b-container>
+                        <b-row>
+                          <b-col>
+                            <b>Flee</b>
+                          </b-col>
+                          <b-col>
+                            {{monsModal.flee}}
+                          </b-col>
+                        </b-row>
+                      </b-container>
 
-            </b-container>
-          </b-col>
+                    </b-col>
+                    <b-col>
+                      
+                     <b-container>
+                        <b-row>
+                          <b-col>
+                            <b>Move Spd</b>
+                          </b-col>
+                          <b-col>
+                            {{monsModal.movespeed}}
+                          </b-col>
+                        </b-row>
+                      </b-container>
 
-          <b-col class="monster-statistics-loot">
-            <b-container>
-              <b-row>
-                <b-col>
-                  <b>Loot Table</b>
-                </b-col>
-              </b-row>
+                    </b-col>
+                  </b-row>
 
-              <b-row v-for="loot of lootTable" v-bind:key="loot" class="monster-loot-table">
-                <b-col cols="1">
-                  <img :src="loot.icon" style="height: 20px; width: 20px;">
-                </b-col>
+                  <b-row>
+                    <b-col>
+                     
+                      <b-container>
+                        <b-row>
+                          <b-col>
+                            <b>Attack Spd</b>
+                          </b-col>
+                          <b-col>
+                            {{monsModal.aspd}}
+                          </b-col>
+                        </b-row>
+                      </b-container>
 
-                <b-col cols="5">
-                  <b>{{loot.itemName}}</b>
-                </b-col>
+                    </b-col>
+                    <b-col>
+                      
+                     <b-container>
+                        <b-row>
+                          <b-col>
+                            
+                          </b-col>
+                          <b-col>
+                            
+                          </b-col>
+                        </b-row>
+                      </b-container>
 
-                <b-col>
-                  x {{loot.amount}}
-                </b-col>
+                    </b-col>
+                  </b-row>
 
-                <b-col>
-                  <p v-if="loot.dropChance"><b-badge variant="success">{{loot.dropChance}}%</b-badge></p>
-                </b-col>
+                </b-container>
               </b-row>
 
             </b-container>
@@ -286,10 +315,46 @@
         </b-row>
       </b-container>
 
-      <b-button class="mt-3" block @click="isOpen = false;">Close</b-button>
+      <div class="monster-statistics-loot">
+        <b-container>
+          <b-row>
+
+            <b-col md="6" v-for="loot of lootTable" v-bind:key="loot" class="monster-loot-table">
+              
+              <b-container>
+                <b-row>
+                  <b-col cols="0.5">
+                    <img :src="loot.icon" class="loot-icon">
+                  </b-col>
+
+
+                  <b-col cols="7">
+                    <b>{{loot.itemName}}</b>
+                  </b-col>
+
+                  <b-col>
+                    x {{loot.amount}}
+                  </b-col>
+
+                  
+                  <b-col cols="0.5">
+                    <b-badge v-if="loot.dropChance > 0" variant="success">{{loot.dropChance}}%</b-badge>
+                  </b-col>
+                </b-row>
+              </b-container>
+              
+            </b-col>
+
+          </b-row>
+        </b-container>
+      </div>
+
+      <b-button class="item-name" block @click="isOpen = false;">Close</b-button>
     </b-modal>
 
-   <b-button class="mt-3" v-b-modal.modal-xl @click="isOpen = !isOpen; info(data.item, data.index, $event.target)">{{data.value}}</b-button>
+    <b-button v-if="data.item.rank == 'Normal'" class="normal" v-b-modal.modal-xl @click="isOpen = !isOpen; info(data.item, data.index, $event.target)">{{data.value}}</b-button>
+    <b-button v-if="data.item.rank == 'Mini Boss'" class="mini-boss" v-b-modal.modal-xl @click="isOpen = !isOpen; info(data.item, data.index, $event.target)">{{data.value}}</b-button>
+    <b-button v-if="data.item.rank == 'MVP'" class="mvp" v-b-modal.modal-xl @click="isOpen = !isOpen; info(data.item, data.index, $event.target)">{{data.value}}</b-button>
   </div>
 </template>
 
@@ -300,7 +365,6 @@
     data ()
     {
       return {
-        test: 'Poring',
         isOpen: false,
         monsModal: {
         id: 'info-modal',
@@ -397,6 +461,11 @@
   @import url("https://fonts.googleapis.com/css?family=Ubuntu");
   @import url("https://fonts.googleapis.com/css?family=Rubik");
   
+  .monster-icon-top {
+    height: 100px;
+    width: 100px;
+  }
+
   .button-area {
     padding-bottom: 10px;
   }
@@ -476,13 +545,18 @@
   }
 
   .monster-loot-table {
-    margin-top: 10px;
+    margin-top: 2px;
     font-size: 16px;
   }
 
-  .mt-3 {
+  .loot-icon {
+    height: 20px;
+    width: 20px;
+  }
+
+  .mvp {
     font-family: 'Ubuntu', sans-serif;
-    text-shadow: 2px 2px 4px #d5d5d5;
+    text-shadow: 2px 2px 4px #e6e6e6;
     font-weight: bold;
     vertical-align: top; 
     width: 100%;
@@ -490,27 +564,122 @@
     border: none;
     border-radius: 15px;
     background: rgba(255, 255, 255,0);
-    font-size: 0.7vw;
-    color:#4882d5; 
+    font-size: 0.8vw;
+    color:#dc3545; 
     margin: 0;
   }
 
-  .mt-3:hover {
-    background:#4882d5;
+  .mvp:hover {
+    background:#dc3545;
     color:white;
-    text-shadow: 2px 2px 4px #333333;
+    text-shadow: 2px 2px 4px #000000;
+  }
+
+  .mini-boss {
+    font-family: 'Ubuntu', sans-serif;
+    text-shadow: 2px 2px 4px #e6e6e6;
+    font-weight: bold;
+    vertical-align: top; 
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255,0);
+    font-size: 0.8vw;
+    color:#1aa2b8; 
+    margin: 0;
+  }
+
+  .mini-boss:hover {
+    background:#1aa2b8;
+    color:white;
+    text-shadow: 2px 2px 4px #000000;
+  }
+ 
+  .item-name {
+    font-family: 'Ubuntu', sans-serif;
+    text-shadow: 2px 2px 4px #e6e6e6;
+    font-weight: bold;
+    vertical-align: top; 
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255,0);
+    font-size: 0.8vw;
+    color:#3aa1f7; 
+    margin: 0;
+  }
+
+  .item-name:hover {
+    background:#3aa1f7;
+    color:white;
+    text-shadow: 2px 2px 4px #000000;
+  }
+
+  .normal {
+    font-family: 'Ubuntu', sans-serif;
+    text-shadow: 2px 2px 4px #e6e6e6;
+    font-weight: bold;
+    vertical-align: top; 
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255,0);
+    font-size: 0.8vw;
+    color:#6c757d; 
+    margin: 0;
+  }
+
+  .normal:hover {
+    background:#6c757d;
+    color:white;
+    text-shadow: 2px 2px 4px #000000;
   }
 
   @media (min-width: 1000px) and (max-width: 1400px) {
+    .monster-icon-top {
+      height: 95px;
+      width: 95px;
+    }
+
+    .monster-information {
+      font-size: 1.4vw;
+    }
+
     .monster-description {
       font-size: 1.4vw;
     }
+
+    .monster-statistics {
+      font-size: 1.4vw;
+    }
+
+    .monster-statistics-loot {
+      font-size: 1.4vw;
+    }
+
+    .monster-loot-table {
+      font-size: 1.2vw;
+    }
+
     .mt-3 {
       font-size: 1.5vw;
     }
   }
 
   @media (min-width: 1px) and (max-width: 999px) {
+    .monster-icon-top {
+      height: 60px;
+      width: 60px;
+    }
+
+    .monster-information {
+      font-size: 13px;
+      margin: 1px;
+    }
+
     .monster-header {
       font-size: 15px;
     }
@@ -519,7 +688,35 @@
       font-size: 13px;
     }
 
-    .mt-3 {
+    .monster-statistics {
+      font-size: 13px;
+      margin: 1px;
+    }
+
+    .monster-statistics-loot {
+      font-size: 13px;
+      margin: 1px;
+      padding: 5px; 
+    }
+
+    .monster-loot-table {
+      font-size: 10px;
+    }
+
+    .loot-icon {
+      height: 12px;
+      width: 12px;
+    }
+
+    .normal {
+      font-size: 12px;
+    }
+
+    .mini-boss {
+      font-size: 12px;
+    }
+
+    .mvp {
       font-size: 12px;
     }
   }
