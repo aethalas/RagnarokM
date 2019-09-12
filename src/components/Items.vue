@@ -56,14 +56,14 @@
         <p v-if="data.value == 'No'"><b-badge variant="danger">{{data.value}}</b-badge></p>
       </template>
       <template v-slot:cell(type)="data">
-        <p v-if="data.value == 'common'"><b-badge variant="primary">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'potion'"><b-badge variant="secondary">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'refine'"><b-badge variant="success">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'scroll'"><b-badge variant="danger">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'blueprint'"><b-badge variant="warning">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'material'"><b-badge variant="info">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'equipment'"><b-badge variant="light">{{data.value}}</b-badge></p>
-        <p v-if="data.value == 'card'"><b-badge variant="dark">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'Common'"><b-badge variant="primary">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'Potion'"><b-badge variant="secondary">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'Refine'"><b-badge variant="success">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'Scroll'"><b-badge variant="danger">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'Blueprint'"><b-badge variant="warning">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'Material'"><b-badge variant="info">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'Equipment'"><b-badge variant="light">{{data.value}}</b-badge></p>
+        <p v-if="data.value == 'Card'"><b-badge variant="dark">{{data.value}}</b-badge></p>
       </template>
     </b-table>
 

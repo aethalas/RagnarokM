@@ -141,7 +141,7 @@
         </b-row>
       </b-container>
 
-      <div v-if="monsModal.description" class="monster-description">{{monsModal.description}}</div>
+      <div v-if="monsModal.description" align="center" class="monster-description">{{monsModal.description}}</div>
 
       <b-container>
         <b-row>
