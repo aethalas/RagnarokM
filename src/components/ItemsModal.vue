@@ -5,7 +5,9 @@
         <b-container class="monster-header">
           <b-row>
             <b-col xs="auto" sm="auto" md="auto" lg="auto">
-              <b>{{data.value}}</b><br>{{monsModal.type}}
+              <b>{{data.value}}</b><br>{{monsModal.type}}<br>  <div v-for="item of newInfo" v-bind:key="item">
+    {{item.name}}
+  </div>
             </b-col>
           </b-row>
         </b-container>
@@ -165,14 +167,14 @@
         </b-row>
       </b-container>
 
-      <div v-if="monsModal.upgrade_of || monsModal.upgrade_to" class="monster-information">
+      <div v-if="monsModal.upgrade_of || monsModal.upgradeable_to" class="monster-information">
         <b-container>
           <b-row>
             <b-col v-if="monsModal.upgrade_of">
               Upgrade Of: <b>{{monsModal.upgrade_of}}</b>
             </b-col>
-            <b-col v-if="monsModal.upgrade_to" align="right">
-              Upgrade To: <b>{{monsModal.upgrade_to}}</b>
+            <b-col v-if="monsModal.upgradeable_to" align="right">
+              Upgrade To: <b>{{monsModal.upgradeable_to}}</b>
             </b-col>
           </b-row>
         </b-container>
@@ -194,9 +196,11 @@
   import axios from 'axios';
 
   export default {
+
     data ()
     {
       return {
+        test: 5,
         isOpen: false,
         monsModal: {
         id: 'info-modal',
@@ -430,7 +434,7 @@
         this.monsModal.jobs = item.jobs
         this.monsModal.effects = item.effects
         this.monsModal.upgrade_of = item.upgrade_of
-        this.monsModal.upgrade_to = item.upgrade_to
+        this.monsModal.upgradeable_to = item.upgradeable_to
         this.$root.$emit('bv::show::modal', this.monsModal.id, button)
       },
 
@@ -449,14 +453,14 @@
         this.monsModal.jobs = ''
         this.monsModal.effects = ''
         this.monsModal.upgrade_of = ''
-        this.monsModal.upgrade_to = ''
+        this.monsModal.upgradeable_to = ''
       },
 
       onFiltered(filteredItems) {
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
         this.currentPage = 1
-      }
+      },
     }
   }
 </script>
