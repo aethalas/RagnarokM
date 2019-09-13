@@ -67,8 +67,6 @@
       </template>
     </b-table>
 
-
-
     <b-pagination
       v-model="currentPage"
       :total-rows="rows"
