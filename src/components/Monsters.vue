@@ -76,10 +76,9 @@
       </b-row>
     </b-container>
 
-
     <b-table id="my-table" :filter="filter" :per-page="perPage" :current-page="currentPage" striped hover head-variant="dark" table-variant="light" primary-key="id" :items="monsters" :fields="fields">
       <template v-slot:cell(icon)="data">
-        <img :src="data.value">
+        <img :src="data.value" class="icon-image">
       </template>
       <template v-slot:cell(name)="data">
         <MonsterModal :data="data"/>
@@ -93,8 +92,6 @@
         <p v-if="data.value == 'MVP'"><b-badge variant="danger">{{data.value}}</b-badge></p>
       </template>
     </b-table>
-
-
 
     <b-pagination
       v-model="currentPage"
@@ -186,7 +183,6 @@
       vertical-align: middle;
       font-family: 'Ubuntu', sans-serif;
       text-shadow: 2px 2px 4px #d5d5d5;
-      font-size: 11px;
       padding: 0 !important;
       margin: 0 !important;
     }

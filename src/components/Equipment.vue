@@ -34,7 +34,6 @@
       </b-row>
     </b-container>
 
-
     <b-table id="my-table" :filter="filter" :per-page="perPage" :current-page="currentPage" striped hover head-variant="dark" table-variant="light" primary-key="id" :items="items" :fields="fields">
       <template v-slot:cell(icon)="data">
         <img :src="data.value" class="icon-image">
@@ -65,8 +64,6 @@
         <p v-if="data.value == 'Card'"><b-badge variant="dark">{{data.value}}</b-badge></p>
       </template>
     </b-table>
-
-
 
     <b-pagination
       v-model="currentPage"
@@ -100,7 +97,6 @@
           { key: 'name', sortable: true },
           { key: 'sellable', sortable: true },
           { key: 'tradeable', sortable: true },
-          { key: 'storageable', sortable: true },
           { key: 'type', sortable: true }
         ],
         items: [],

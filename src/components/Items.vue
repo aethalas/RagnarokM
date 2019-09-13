@@ -40,7 +40,7 @@
         <img :src="data.value" class="icon-image">
       </template>
       <template v-slot:cell(name)="data">
-        <p v-if="data.item.type != 'card'"><ItemsModal :data="data"/></p>
+        <p v-if="data.item.type != 'Card'"><ItemsModal :data="data"/></p>
         <p v-else><CardsModal :data="data"/></p>
       </template>
       <template v-slot:cell(sellable)="data">
@@ -101,7 +101,6 @@
           { key: 'name', sortable: true },
           { key: 'sellable', sortable: true },
           { key: 'tradeable', sortable: true },
-          { key: 'storageable', sortable: true },
           { key: 'type', sortable: true }
         ],
         items: [],
@@ -135,6 +134,26 @@
 </script>
 
 <style>
+  .item-name {
+    font-family: 'Ubuntu', sans-serif;
+    text-shadow: 2px 2px 4px #e6e6e6;
+    font-weight: bold;
+    vertical-align: bottom; 
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255,0);
+    font-size: 0.9vw;
+    color:#3aa1f7; 
+    margin-top: 10px;
+  }
+
+  .item-name:hover {
+    background:#3aa1f7;
+    color:white;
+    text-shadow: 2px 2px 4px #000000;
+  }
+
  .icon-image {
    max-height: 64px;
    max-width: 64px;
@@ -147,19 +166,22 @@
   }
 
   @media (min-width: 1000px) and (max-width: 1400px) {
-
+    .item-name {
+      font-size: 20px;
+    }
   }
 
   @media (min-width: 1px) and (max-width: 999px) {
-    img {
-      width: 40px;
+    .item-name {
+      font-size: 12px;
+    }
+
+    .icon-image {
+      max-height: 32px;
+      max-width: 32px;
     }
 
     .table > tbody > tr > td {
-      vertical-align: middle;
-      font-family: 'Ubuntu', sans-serif;
-      text-shadow: 2px 2px 4px #d5d5d5;
-      font-size: 11px;
       padding: 0 !important;
       margin: 0 !important;
     }
