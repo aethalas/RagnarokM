@@ -103,8 +103,7 @@
           { key: 'tradeable', sortable: true },
           { key: 'type', sortable: true }
         ],
-        items: [],
-        cards: [],
+        items: [], 
         errors: [],
         infoModal: {
           id: 'info-modal',

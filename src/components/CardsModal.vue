@@ -130,7 +130,8 @@
         title: '',
         description: ''
         },
-        droppedBy: []
+        droppedBy: [],
+        errors: []
       }
     },
 
@@ -170,6 +171,7 @@
         this.monsModal.loot_draw_craft = ''
         this.monsModal.deposit = ''
       },
+      
       onFiltered(filteredItems) {
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
