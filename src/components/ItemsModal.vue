@@ -183,7 +183,6 @@
 
       <div v-if="monsModal.effects" class="monster-statistics" :inner-html.prop="monsModal.effects"></div>
 
-      
       <div class="monster-statistics-loot" v-if="droppedBy.length > 0">
         <b-container><b>Dropped By:</b>
           <b-row>
@@ -237,7 +236,7 @@
     },
 
     created() {
-      axios.get('http://jonnyhtyson.com/ragnarokm/api/items.php', { params: {monsters: this.data.value }})
+      axios.get('http://jonnyhtyson.com/ragnarokm/api/items.php', { params: {monsters: this.data.name }})
       .then(response => {
         // JSON responses are automatically parsed.
         this.droppedBy = response.data
@@ -459,6 +458,7 @@
       info(item, index, button) {
         this.monsModal.title = `Row index: ${index}`
         this.monsModal.icon = item.icon
+        this.monsModal.name = item.name
         this.monsModal.description = item.description
         this.monsModal.type = item.type
         this.monsModal.level = item.level
@@ -478,6 +478,7 @@
       resetInfoModal() {
         this.monsModal.title = ''
         this.monsModal.icon = ''
+        this.monsModal.name = ''
         this.monsModal.description = ''
         this.monsModal.type = ''
         this.monsModal.level = ''
