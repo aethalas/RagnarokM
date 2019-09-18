@@ -5,9 +5,7 @@
         <b-container class="monster-header">
           <b-row>
             <b-col xs="auto" sm="auto" md="auto" lg="auto">
-              <b>{{data.value}}</b><br>{{monsModal.type}}<br>  <div v-for="item of newInfo" v-bind:key="item">
-    {{item.name}}
-  </div>
+              <b>{{data.value}}</b><br>{{monsModal.type}}
             </b-col>
           </b-row>
         </b-container>
@@ -185,6 +183,32 @@
 
       <div v-if="monsModal.effects" class="monster-statistics" :inner-html.prop="monsModal.effects"></div>
 
+      
+      <div class="monster-statistics-loot" v-if="droppedBy.length > 0">
+        <b-container><b>Dropped By:</b>
+          <b-row>
+
+            <b-col md="6" v-for="drop of droppedBy" v-bind:key="drop" class="monster-loot-table">
+              <b-container>
+                <b-row>
+                  <b-col cols="0.5">
+                    <img :src="drop.icon" class="loot-icon">
+                  </b-col>
+
+                  <b-col cols="6">
+                    <b>{{drop.monster_name}}</b>
+                  </b-col>
+
+                  <b-col cols="1">
+                    <b-badge v-if="drop.drop_chance > 0" variant="success">{{drop.drop_chance}}%</b-badge>
+                  </b-col>
+                </b-row>
+              </b-container>
+            </b-col>
+          </b-row>
+        </b-container>
+      </div>
+
       <b-button class="item-name" block @click="isOpen = false;">Close</b-button>
     </b-modal>
 
@@ -207,7 +231,20 @@
         title: '',
         description: '',
         },
+        droppedBy: [],
+        errors: []
       }
+    },
+
+    created() {
+      axios.get('http://jonnyhtyson.com/ragnarokm/api/items.php', { params: {monsters: this.data.value }})
+      .then(response => {
+        // JSON responses are automatically parsed.
+        this.droppedBy = response.data
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
     },
 
     filters: {

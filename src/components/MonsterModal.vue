@@ -7,31 +7,22 @@
             <b-col cols="3" xs="auto" sm="auto" md="auto" lg="auto"><img :src="monsModal.icon" class="monster-icon-top"></b-col>
             <b-col cols="9" xs="auto" sm="auto" md="auto" lg="auto">
               <b>{{data.value}}</b><br>
-              {{monsModal.race}} / {{monsModal.element}} / {{monsModal.size}}<br>
-              <p v-if="monsModal.rank == 'Normal'"><b-badge>{{monsModal.rank}}</b-badge></p>
-              <p v-if="monsModal.rank == 'Mini Boss'"><b-badge variant="info">{{monsModal.rank}}</b-badge></p>
-              <p v-if="monsModal.rank == 'MVP'"><b-badge variant="danger">{{monsModal.rank}}</b-badge></p>
+              <b-badge variant="dark">{{monsModal.race}}</b-badge> <b-badge variant="dark">{{monsModal.element}}</b-badge>  <b-badge variant="dark">{{monsModal.size}}</b-badge><br>
+              <span v-if="monsModal.rank == 'Normal'"><b-badge>{{monsModal.rank}}</b-badge></span>
+              <span v-if="monsModal.rank == 'Mini Boss'"><b-badge variant="info">{{monsModal.rank}}</b-badge></span>
+              <span v-if="monsModal.rank == 'MVP'"><b-badge variant="danger">{{monsModal.rank}}</b-badge></span>
+              <b-badge variant="dark">{{monsModal.baseExp}} Base Exp</b-badge>
+              <b-badge variant="dark">{{monsModal.jobExp}} Job Exp</b-badge>
             </b-col>
           </b-row>
         </b-container>
       </template>
 
+      
       <b-container>
         <b-row>
-          <b-col class="monster-information">
-            <b-container>
-
-              <ModalSideBySide :description="'Level'" :value="monsModal.level"/>
-              <ModalSideBySide :description="'Race'" :value="monsModal.race"/>
-              <ModalSideBySide :description="'Size'" :value="monsModal.element"/>
-              <ModalSideBySide :description="'Element'" :value="monsModal.size"/>
-              <ModalSideBySide :description="'Base Exp'" :value="monsModal.baseExp"/>
-              <ModalSideBySide :description="'Job Exp'" :value="monsModal.jobExp"/>
-
-            </b-container>
-          </b-col>
-
-          <b-col class="monster-information">
+          
+          <b-col class="monster-information" md="2">
             <b-container>
 
               <ModalSideBySide :description="'Str'" :value="monsModal.str"/>
@@ -44,37 +35,48 @@
             </b-container>
           </b-col>
 
-        </b-row>
-      </b-container>
-
-      <div v-if="monsModal.description" align="center" class="monster-description">{{monsModal.description}}</div>
-
-      <b-container>
-        <b-row>
-          <b-col class="monster-statistics">
+          <b-col class="monster-information" md="3">
             <b-container>
 
-              <b-row>
-                <b-container>
-                  <ModalSideBySideNoGap :description1="'HP'" :value1="monsModal.hp" :description2="'Hit'" :value2="monsModal.hit"/>
-                  <ModalSideBySideNoGap :description1="'Atk'" :value1="monsModal.atk" :description2="'M.Atk'" :value2="monsModal.matk"/>
-                  <ModalSideBySideNoGap :description1="'Def'" :value1="monsModal.def" :description2="'M.Atk'" :value2="monsModal.matk"/>
-                  <ModalSideBySideNoGap :description1="'M.Def'" :value1="monsModal.mdef" :description2="'M.Atk'" :value2="monsModal.matk"/>
-                  <ModalSideBySideNoGap :description1="'Flee'" :value1="monsModal.flee" :description2="'Move Spd'" :value2="monsModal.movespeed"/>
-                  <ModalSideBySideNoGap :description1="'Attack Spd'" :value1="monsModal.aspd" :description2="''" :value2="''"/>
-                </b-container>
-              </b-row>
+              <ModalSideBySide :description="'Level'" :value="monsModal.level"/>
+              <ModalSideBySide :description="'HP'" :value="monsModal.hp"/>
+              <ModalSideBySide :description="'Atk'" :value="monsModal.atk"/>
+              <ModalSideBySide :description="'Def'" :value="monsModal.def"/>
+              <ModalSideBySide :description="'Flee'" :value="monsModal.flee"/>
 
             </b-container>
+          </b-col>
+
+          <b-col class="monster-information">
+            <b-container>
+
+              <ModalSideBySide :description="'Hit'" :value="monsModal.hit"/>
+              <ModalSideBySide :description="'M.Atk'" :value="monsModal.matk"/>
+              <ModalSideBySide :description="'M.Def'" :value="monsModal.mdef"/>
+              <ModalSideBySide :description="'Atk Spd'" :value="monsModal.aspd"/>
+              <ModalSideBySide :description="'Move Spd'" :value="monsModal.movespeed"/>
+
+            </b-container>
+          </b-col>
+
+          <b-col class="monster-information" md="3" v-if="locationsFound.length > 0">
+            <b>Located At:</b>
+
+              <div v-for="location of locationsFound" v-bind:key="location" class="monster-loot-table">
+                  <b>{{location.location_name}}</b> {{location.level_range}}
+              </div>
+
+            
           </b-col>
 
         </b-row>
       </b-container>
 
-      <div class="monster-statistics-loot">
-        <b-container>
-          <b-row>
+      <div v-if="monsModal.description" align="center" class="monster-description">{{monsModal.description}}</div>
 
+      <div class="monster-statistics-loot" v-if="lootTable.length > 0">
+        <b-container> <b>Loot Items:</b>
+          <b-row>
             <b-col md="6" v-for="loot of lootTable" v-bind:key="loot" class="monster-loot-table">
               <b-container>
                 <b-row>
@@ -91,7 +93,7 @@
                   </b-col>
 
                   <b-col cols="0.5">
-                    <b-badge v-if="loot.dropChance > 0" variant="success">{{loot.dropChance}}%</b-badge>
+                    <b-badge v-if="loot.drop_chance > 0" variant="success">{{loot.drop_chance}}%</b-badge>
                   </b-col>
                 </b-row>
               </b-container>
@@ -130,6 +132,7 @@
         description: ''
         },
         lootTable: [],
+        locationsFound: [],
         errors: []
       }
     },
@@ -139,6 +142,15 @@
       .then(response => {
         // JSON responses are automatically parsed.
         this.lootTable = response.data
+      })
+      .catch(e => {
+        this.errors.push(e)
+      }),
+
+      axios.get('http://jonnyhtyson.com/ragnarokm/api/monster.php', { params: {locations: this.data.value }})
+      .then(response => {
+        // JSON responses are automatically parsed.
+        this.locationsFound = response.data
       })
       .catch(e => {
         this.errors.push(e)
