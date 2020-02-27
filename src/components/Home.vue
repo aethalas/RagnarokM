@@ -1,7 +1,7 @@
 <template>
  <b-container fluid>
    <b-row>
-     <b-col fluid="sm"><HomeRace/></b-col>
+     <b-col fluid="sm">Using Views! Much wow. So amaze.</b-col>
      <b-col fluid="sm"><HomeRace/></b-col>
    </b-row> 
 
